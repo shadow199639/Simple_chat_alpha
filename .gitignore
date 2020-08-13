@@ -7,6 +7,8 @@ build/
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
 
+#Shadow9639
+
 # Built application files
 *.apk
 *.ap_
