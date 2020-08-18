@@ -24,7 +24,7 @@ object Utils {
         return firstName to lastName
     }
 
-    fun transiteration(payload: String, divider: String = " "): String {
+    fun transliteration(payload: String, divider: String = " "): String {
         val dict = mapOf(
             'а' to "а",
             'б' to "b",
