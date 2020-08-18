@@ -64,60 +64,23 @@ object Utils {
 
     fun transliteration(payload: String, divider: String = " "): String {
         var res = ""
-        var isUpper1 = false
-        var isUpper2 = false
-        var parts = payload.split(" ")
 
-        if(parts[0][0].isUpperCase())
-            isUpper1 = true
-
-        if(parts[1][0].isUpperCase())
-            isUpper2 = true
-
-        if(parts[0][0].isUpperCase() && parts[1].get(0).isUpperCase()){
-            isUpper1 = true
-            isUpper2 = true
-        }
-
-        for (i in 0 until payload.length) {
-            if (!dict.containsKey(payload[i].toLowerCase())) {
-                res += payload[i]
-            } else {
-
-                res += dict[payload[i].toLowerCase()].toString()
-            }
-        }
-
-        parts = res.split(" ")
-
-        when {
-            parts[0] == "null" && parts[1] == "null" -> res = "null"
-            parts[0] == "" || parts[0] == "null"-> {
-                if(isUpper1 || isUpper2) {
-                    res = parts[1].get(0).toUpperCase() + parts[1].substring(1)
+        for (i in payload) {
+            when {
+                i == ' ' -> res += divider
+                !dict.containsKey(i.toLowerCase()) -> res += i
+                dict.containsKey(i.toLowerCase()) -> {
+                    if (i.isLowerCase())
+                        res += dict[i]
+                    else {
+                        var temp = dict[i.toLowerCase()].toString()
+                        if (temp.length > 1) {
+                            res += temp[0].toUpperCase()
+                            res += temp[1]
+                        } else res += temp.toUpperCase()
+                    }
                 }
-                else res = parts[1]
-            }
-            parts[1] == "" || parts[1] == "null" -> {
-                if(isUpper1 || isUpper2) {
-                    res = parts[0].get(0).toUpperCase() + parts[0].substring(1)
-                }
-                else res = parts[0]
-            }
-            else -> {
-                if (isUpper1) {
-                    res = parts[0].get(0).toUpperCase() + parts[0].substring(1) +
-                            divider + parts[1]
-                }
-                else if(isUpper2){
-                    res = parts[0] +
-                            divider + parts[1].get(0).toUpperCase() + parts[1].substring(1)
-                }
-                else if(isUpper1 && isUpper2){
-                    res = parts[0].get(0).toUpperCase() + parts[0].substring(1) +
-                            divider + parts[1].get(0).toUpperCase() + parts[1].substring(1)
-                }
-                else res = parts[0] + divider + parts[1]
+
             }
         }
         return res
