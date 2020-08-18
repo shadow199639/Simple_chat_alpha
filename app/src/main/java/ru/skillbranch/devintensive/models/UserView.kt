@@ -11,12 +11,12 @@ class UserView(
     fun printMe() {
         println(
             """
-            id: $id:
-            fullName: $fullName:
-            nickName: $nickName:
-            avatar: $avatar: 
-            status: $status:
-            initials: $initials: 
+            id: $id
+            fullName: $fullName
+            nickName: $nickName
+            avatar: $avatar
+            status: $status
+            initials: $initials
         """.trimIndent()
         )
     }
