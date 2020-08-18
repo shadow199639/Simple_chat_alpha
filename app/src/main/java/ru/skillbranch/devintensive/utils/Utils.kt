@@ -68,13 +68,13 @@ object Utils {
         var isUpper2 = false
         var parts = payload.split(" ")
 
-        if(parts[0].get(0).isUpperCase())
+        if(parts[0][0].isUpperCase())
             isUpper1 = true
 
-        if(parts[1].get(0).isUpperCase())
+        if(parts[1][0].isUpperCase())
             isUpper2 = true
 
-        if(parts[0].get(0).isUpperCase() && parts[1].get(0).isUpperCase()){
+        if(parts[0][0].isUpperCase() && parts[1].get(0).isUpperCase()){
             isUpper1 = true
             isUpper2 = true
         }
@@ -92,11 +92,17 @@ object Utils {
 
         when {
             parts[0] == "null" && parts[1] == "null" -> res = "null"
-            parts[0] == "" -> {
-                res = parts[1].get(0).toUpperCase() + parts[1].substring(1)
+            parts[0] == "" || parts[0] == "null"-> {
+                if(isUpper1 || isUpper2) {
+                    res = parts[1].get(0).toUpperCase() + parts[1].substring(1)
+                }
+                else res = parts[1]
             }
-            parts[1] == "" -> {
-                res = parts[0].get(0).toUpperCase() + parts[0].substring(1)
+            parts[1] == "" || parts[1] == "null" -> {
+                if(isUpper1 || isUpper2) {
+                    res = parts[0].get(0).toUpperCase() + parts[0].substring(1)
+                }
+                else res = parts[0]
             }
             else -> {
                 if (isUpper1) {
