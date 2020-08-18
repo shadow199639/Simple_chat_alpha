@@ -44,6 +44,7 @@ object Utils {
     fun parseFullName(fullName: String?): Pair<String?, String?> {
 
         var parts = fullName?.split(" ")
+
         var firstName = parts?.getOrNull(0)
         var lastName = parts?.getOrNull(1)
 
@@ -61,41 +62,34 @@ object Utils {
         return firstName to lastName
     }
 
-    //    fun transliteration(payload: String, divider: String = " "): String {
-//
-//        var res: String = ""
-//        if(payload == null)
-//            return null.toString()
-//
-//
-//        for (i in payload.indices) {
-//            if (dict.containsKey(payload[i].toLowerCase())) {
-//                when {
-//                    i == 0 -> res += dict[payload[i].toLowerCase()].toString().toUpperCase()
-//                    payload[i - 1].toString() == " " -> res += dict[payload[i].toLowerCase()].toString()
-//                        .toUpperCase()
-//                    else -> res += dict[payload[i].toLowerCase()].toString()
-//                }
-//            } else {
-//                if (payload[i].toString() == " ")
-//                    res += divider
-//                else
-//                    res += payload[i]
-//            }
-//        }
-//        return res
-//    }
     fun transliteration(payload: String, divider: String = " "): String {
         var res = ""
-        for (i in payload) {
-            if (!dict.containsKey(i.toLowerCase())) {
-                res += i
+        var isUpper1 = false
+        var isUpper2 = false
+        var parts = payload.split(" ")
+
+        if(parts[0].get(0).isUpperCase())
+            isUpper1 = true
+
+        if(parts[1].get(0).isUpperCase())
+            isUpper2 = true
+
+        if(parts[0].get(0).isUpperCase() && parts[1].get(0).isUpperCase()){
+            isUpper1 = true
+            isUpper2 = true
+        }
+
+        for (i in 0 until payload.length) {
+            if (!dict.containsKey(payload[i].toLowerCase())) {
+                res += payload[i]
             } else {
-                res += dict[i.toLowerCase()].toString()
+
+                res += dict[payload[i].toLowerCase()].toString()
             }
         }
 
-        var parts = res.split(" ")
+        parts = res.split(" ")
+
         when {
             parts[0] == "null" && parts[1] == "null" -> res = "null"
             parts[0] == "" -> {
@@ -104,8 +98,21 @@ object Utils {
             parts[1] == "" -> {
                 res = parts[0].get(0).toUpperCase() + parts[0].substring(1)
             }
-            else -> res = parts[0].get(0).toUpperCase() + parts[0].substring(1) +
-                    divider + parts[1].get(0).toUpperCase() + parts[1].substring(1)
+            else -> {
+                if (isUpper1) {
+                    res = parts[0].get(0).toUpperCase() + parts[0].substring(1) +
+                            divider + parts[1]
+                }
+                else if(isUpper2){
+                    res = parts[0] +
+                            divider + parts[1].get(0).toUpperCase() + parts[1].substring(1)
+                }
+                else if(isUpper1 && isUpper2){
+                    res = parts[0].get(0).toUpperCase() + parts[0].substring(1) +
+                            divider + parts[1].get(0).toUpperCase() + parts[1].substring(1)
+                }
+                else res = parts[0] + divider + parts[1]
+            }
         }
         return res
     }
