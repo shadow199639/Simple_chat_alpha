@@ -6,7 +6,7 @@ import java.util.*
 object Utils {
 
     private val dict = mapOf(
-        'а' to "а",
+        'а' to "a",
         'б' to "b",
         'в' to "v",
         'г' to "g",
@@ -76,7 +76,9 @@ object Utils {
                         var temp = dict[i.toLowerCase()].toString()
                         if (temp.length > 1) {
                             res += temp[0].toUpperCase()
-                            res += temp[1]
+                            for(j in 1 .. temp.length - 1){
+                                res += temp[j]
+                            }
                         } else res += temp.toUpperCase()
                     }
                 }
