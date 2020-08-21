@@ -7,14 +7,16 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.skillbranch.devintensive.extensions.hideKeyboard
 import ru.skillbranch.devintensive.models.Bender
 
-class MainActivity : AppCompatActivity() , View.OnClickListener{
+class MainActivity : AppCompatActivity() , View.OnClickListener {
     lateinit var benderImage: ImageView
     lateinit var textTxt: TextView
     lateinit var messageEt: EditText
@@ -42,7 +44,23 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
         textTxt.text = benderObj.askQuestion()
         sendBtn.setOnClickListener(this)
 
-        hideKeyboard()
+        messageEt.setOnEditorActionListener { view, actionId, Event ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_DONE -> {
+                    val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString())
+                    Log.d("M_MainActivity", "$phrase $color")
+                    messageEt.setText("")
+                    val (r,g,b) = color
+                    benderImage.setColorFilter(Color.rgb(r,g,b), PorterDuff.Mode.MULTIPLY)
+                    textTxt.text = phrase
+//                    Toast.makeText(this,"action done",Toast.LENGTH_LONG).show()
+                    hideKeyboard()
+                    true
+                }
+                else -> false
+            }
+        }
+
     }
 
     override fun onRestart() {
@@ -86,12 +104,13 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
 
     override fun onClick(p0: View?) {
         if(p0?.id == R.id.iv_send){
-            val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString().toLowerCase())
+            val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString())
             Log.d("M_MainActivity", "$phrase $color")
             messageEt.setText("")
             val (r,g,b) = color
             benderImage.setColorFilter(Color.rgb(r,g,b), PorterDuff.Mode.MULTIPLY)
             textTxt.text = phrase
+            hideKeyboard()
         }
     }
 }

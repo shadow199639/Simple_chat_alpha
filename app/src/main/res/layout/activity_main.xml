@@ -13,8 +13,7 @@
         android:layout_height="100dp"
         android:gravity="center"
         android:text="Hello World!"
-        android:textSize="@dimen/font_large_24"
- />
+        android:textSize="@dimen/font_large_24" />
 
     <ImageView
         android:id="@+id/iv_bender"
@@ -41,16 +40,19 @@
             android:lines="1"
             android:paddingTop="@dimen/spacing_normal_16"
             android:paddingBottom="@dimen/spacing_normal_16"
+            android:inputType="text"
+            android:imeOptions="actionDone"
             android:textColor="@color/color_gray_light"
             android:textColorHint="@color/color_gray_light" />
 
         <ImageView
             android:id="@+id/iv_send"
+            android:contentDescription="send"
             android:layout_width="@dimen/spacing_large_24"
             android:layout_height="@dimen/spacing_large_24"
+            android:src="@drawable/ic_baseline_send_24"
             android:layout_gravity="center"
-            android:layout_marginRight="@dimen/spacing_normal_16"
-            android:src="@drawable/ic_baseline_send_24" />
+            android:layout_marginRight="@dimen/spacing_normal_16"/>
     </LinearLayout>
 
 </LinearLayout>
