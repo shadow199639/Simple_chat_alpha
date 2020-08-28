@@ -82,7 +82,6 @@ object Utils {
                         } else res += temp.toUpperCase()
                     }
                 }
-
             }
         }
         return res
@@ -98,5 +97,23 @@ object Utils {
             else -> fName.toString() + sName.toString()
         }
     }
+
+    fun validCheck(payload: String): Boolean = payload.isEmpty() || payload.matches(
+        Regex("^(https://){0,1}(www.){0,1}github.com\\/[A-z\\d](?:[A-z\\d]|(_|-)(?=[A-z\\d])){0,256}(/)?\$",RegexOption.IGNORE_CASE)) &&
+            !payload.matches(Regex("^.*(" +
+                    "\\/enterprise|" +
+                    "\\/features|" +
+                    "\\/topics|" +
+                    "\\/collections|" +
+                    "\\/trending|" +
+                    "\\/events|" +
+                    "\\/marketplace" +
+                    "|\\/pricing|" +
+                    "\\/nonprofit|" +
+                    "\\/customer-stories|" +
+                    "\\/security|" +
+                    "\\/login|" +
+                    "\\/join)\$",RegexOption.IGNORE_CASE)
+            )
 }
 
