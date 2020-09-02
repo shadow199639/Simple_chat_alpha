@@ -12,4 +12,21 @@ data class ChatItem (
     val isOnline: Boolean = false,
     val chatType : ChatType = ChatType.SINGLE,
     var author :String? = null
-)
+){
+    companion object {
+        fun archiveItem(shortDescription: String?, messageCount: Int, lastMessageDate: String?, author: String?): ChatItem {
+            return ChatItem(
+                "-1",
+                null,
+                "",
+                "Архив чатов",
+                shortDescription,
+                messageCount,
+                lastMessageDate,
+                false,
+                ChatType.ARCHIVE,
+                author
+            )
+        }
+    }
+}

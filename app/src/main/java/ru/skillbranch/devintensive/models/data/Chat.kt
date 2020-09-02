@@ -1,10 +1,8 @@
 package ru.skillbranch.devintensive.models.data
 
-import androidx.annotation.VisibleForTesting
+import ru.skillbranch.avatarimageview.extentions.shortMessage
 import ru.skillbranch.devintensive.extensions.shortFormat
 import ru.skillbranch.devintensive.models.BaseMessage
-import ru.skillbranch.devintensive.models.ImageMessage
-import ru.skillbranch.devintensive.models.TextMessage
 import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
 
@@ -15,23 +13,15 @@ data class Chat(
     var messages: MutableList<BaseMessage> = mutableListOf(),
     var isArchived: Boolean = false
 ) {
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun unreadableMessageCount(): Int {
         return messages.count { message -> !message.isReaded }
     }
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun lastMessageDate(): Date? {
         return messages.lastOrNull()?.date
     }
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    fun lastMessageShort(): Pair<String, String?> =
-        when (val lastMessage = messages.lastOrNull()) {
-            is TextMessage -> lastMessage.text.orEmpty() to "${lastMessage.from.firstName}"
-            is ImageMessage -> "${lastMessage.from.firstName} - отправил фото" to null
-            else -> "Сообщений нет" to null
-        }
+    fun lastMessageShort(): Pair<String, String?> = shortMessage(messages.lastOrNull())
 
     private fun isSingle(): Boolean = members.size == 1
 
