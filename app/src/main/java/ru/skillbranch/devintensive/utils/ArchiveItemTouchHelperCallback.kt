@@ -1,9 +1,11 @@
-package ru.skillbranch.devintensive.ui.adapters
+package ru.skillbranch.devintensive.utils
 
 import android.graphics.drawable.Drawable
 import android.view.View
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.data.ChatItem
+import ru.skillbranch.devintensive.ui.adapters.ChatAdapter
+import ru.skillbranch.devintensive.ui.adapters.ChatItemTouchHelperCallback
 
 class ArchiveItemTouchHelperCallback(
     adapter: ChatAdapter,
