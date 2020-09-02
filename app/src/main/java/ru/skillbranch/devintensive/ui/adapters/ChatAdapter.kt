@@ -179,7 +179,7 @@ class ChatAdapter(val listener: (ChatItem) -> Unit) :
                 text = item.messageCount.toString()
             }
 
-            tv_message_author_archive.text = item.author
+            tv_message_author_archive.text = "@${item.author}"
             tv_message_archive.text = item.shortDescription
 
             itemView.setOnClickListener {

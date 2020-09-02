@@ -7,12 +7,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import androidx.core.view.children
 import androidx.lifecycle.Observer
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_group.*
 import ru.skillbranch.devintensive.R
@@ -107,14 +109,15 @@ class GroupActivity : AppCompatActivity() {
                 R.drawable.avatar_default,
                 theme
             ) //TODO подгрузка drawable через Glide
+
             isCloseIconVisible = true
             tag = user.id //пригодится во вьюхах
             isClickable = true
             closeIconTint = ColorStateList.valueOf(Color.WHITE)
             chipBackgroundColor = ColorStateList.valueOf(getColor(R.color.color_primary_light))
             setTextColor(Color.WHITE)
-
         }
+
         chip.setOnCloseIconClickListener { viewModel.handleRemoveChip(it.tag.toString()) }
         chip_group.addView(chip)
     }
