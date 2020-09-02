@@ -33,6 +33,7 @@ class CircleImageView @JvmOverloads constructor(
     private var borderColor = DEFAULT_COLOR
     private var text: String? = null
     private var bitmap: Bitmap? = null
+
     init {
         attrs?.let { attributeSet ->
             val a = context.obtainStyledAttributes(attributeSet, R.styleable.CircleImageView)
@@ -57,7 +58,7 @@ class CircleImageView @JvmOverloads constructor(
         this.invalidate()
     }
 
-    fun setBorderColor(@ColorRes colorId: Int){
+    fun setBorderColor(@ColorRes colorId: Int) {
         borderColor = ContextCompat.getColor(App.applicationContext(), colorId)
         this.invalidate()
     }
@@ -76,13 +77,12 @@ class CircleImageView @JvmOverloads constructor(
         canvas.drawBitmap(bitmap, 0F, 0F, null)
     }
 
-    fun generateAvatar(text: String?, sizeSp: Int, theme: Resources.Theme){
-        if (bitmap == null || text != this.text){
+    fun generateAvatar(text: String?, sizeSp: Int, theme: Resources.Theme) {
+        if (bitmap == null || text != this.text) {
             val image =
                 if (text == null) {
                     getDefaultAvatar(theme)
-                }
-                else getInitials(text, sizeSp, theme)
+                } else getInitials(text, sizeSp, theme)
 
             this.text = text
             bitmap = image
@@ -128,7 +128,7 @@ class CircleImageView @JvmOverloads constructor(
         val strokeStart = strokeWidth / 2F
         val strokeEnd = squareBmp.width - strokeWidth / 2F
 
-        inCircle.set(strokeStart , strokeStart, strokeEnd, strokeEnd)
+        inCircle.set(strokeStart, strokeStart, strokeEnd, strokeEnd)
 
         val strokePaint = Paint(Paint.ANTI_ALIAS_FLAG)
         strokePaint.color = color
@@ -148,11 +148,16 @@ class CircleImageView @JvmOverloads constructor(
         return Bitmap.createBitmap(bitmap, cropStartX, cropStartY, size, size)
     }
 
-    private fun getScaledBitmap(bitmap: Bitmap, minSide: Int) : Bitmap {
+    private fun getScaledBitmap(bitmap: Bitmap, minSide: Int): Bitmap {
         return if (bitmap.width != minSide || bitmap.height != minSide) {
             val smallest = min(bitmap.width, bitmap.height).toFloat()
             val factor = smallest / minSide
-            Bitmap.createScaledBitmap(bitmap, (bitmap.width / factor).toInt(), (bitmap.height / factor).toInt(), false)
+            Bitmap.createScaledBitmap(
+                bitmap,
+                (bitmap.width / factor).toInt(),
+                (bitmap.height / factor).toInt(),
+                false
+            )
         } else bitmap
     }
 
@@ -166,7 +171,8 @@ class CircleImageView @JvmOverloads constructor(
         if (drawable is BitmapDrawable)
             return (drawable as BitmapDrawable).bitmap
 
-        val bitmap = Bitmap.createBitmap(drawable.intrinsicWidth, drawable.intrinsicHeight, Config.ARGB_8888)
+        val bitmap =
+            Bitmap.createBitmap(drawable.intrinsicWidth, drawable.intrinsicHeight, Config.ARGB_8888)
         val canvas = Canvas(bitmap)
         drawable.setBounds(0, 0, canvas.width, canvas.height)
         drawable.draw(canvas)

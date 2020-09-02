@@ -1,4 +1,16 @@
 <resources>
+
+    <style name="ActivityTransition" parent="android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/bottom_up</item>
+        <item name="android:activityOpenExitAnimation">@anim/idle</item>
+        <item name="android:activityCloseEnterAnimation">@anim/idle</item>
+        <item name="android:activityCloseExitAnimation">@anim/bottom_down</item>
+    </style>
+
+<!--    <style name="SplashScreen" parent="Theme.MaterialComponents">-->
+<!--        <item name="android:windowBackground">@drawable/bg_splash</item>-->
+<!--    </style>-->
+
     <style name="Profile">
 
     </style>

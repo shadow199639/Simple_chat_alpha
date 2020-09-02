@@ -14,7 +14,7 @@ class ProfileViewModel : ViewModel() {
     private val profileData = MutableLiveData<Profile>()
     private val appTheme = MutableLiveData<Int>()
     private val _repositoryError = MutableLiveData<Boolean>()
-    private val _isRepoError = MutableLiveData<Boolean>()
+    private val _isRepoClear = MutableLiveData<Boolean>()
 
     init {
         Log.d("M_ProfileViewModel", "init view model")
@@ -47,14 +47,14 @@ class ProfileViewModel : ViewModel() {
 
     fun getRepositoryError(): LiveData<Boolean> = _repositoryError
 
-    fun getIsRepoError(): LiveData<Boolean> = _isRepoError
+    fun getRepoClear(): LiveData<Boolean> = _isRepoClear
 
     fun onRepositoryChanged(repo:String) {
         _repositoryError.value = !Utils.validCheck(repo)
     }
 
     fun onRepoEditCompleted(isError: Boolean) {
-        _isRepoError.value = isError
+        _isRepoClear.value = isError
     }
 
 

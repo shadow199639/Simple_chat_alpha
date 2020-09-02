@@ -1,6 +1,5 @@
 package ru.skillbranch.devintensive.ui.profile
 
-import android.graphics.Color
 import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
@@ -8,35 +7,26 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
-import ru.skillbranch.devintensive.extensions.hideKeyboard
-import ru.skillbranch.devintensive.models.Bender
 import ru.skillbranch.devintensive.models.Profile
 import ru.skillbranch.devintensive.utils.Utils
-import ru.skillbranch.devintensive.utils.Utils.validCheck
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
 class ProfileActivity : AppCompatActivity() {
     companion object {
         const val IS_EDIT_MODE = "IS_EDIT_MODE"
     }
-
     private lateinit var viewModel: ProfileViewModel
     var isEditMode = false
     lateinit var viewFields: Map<String, TextView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         initViews(savedInstanceState)
@@ -53,29 +43,7 @@ class ProfileActivity : AppCompatActivity() {
         viewModel.getProfileData().observe(this, Observer { updateUI(it) })
         viewModel.getTheme().observe(this, Observer { updateTheme(it) })
         viewModel.getRepositoryError().observe(this, Observer { updateRepoError(it) })
-        viewModel.getIsRepoError().observe(this, Observer { updateRepository(it) })
-    }
-
-    private fun updateRepository(isError: Boolean) {
-        if (isError) et_repository.text.clear()
-    }
-
-    private fun updateRepoError(isError: Boolean) {
-        wr_repository.isErrorEnabled = isError
-        wr_repository.error = if (isError) "Невалидный адрес репозитория" else ""
-    }
-
-    private fun updateTheme(mode: Int) {
-        delegate.setLocalNightMode(mode)
-    }
-
-    private fun updateUI(profile: Profile) {
-        profile.toMap().also {
-            for((k,v) in viewFields){
-                v.text = it[k].toString()
-            }
-        }
-        updateAvatar(profile)
+        viewModel.getRepoClear().observe(this, Observer { updateRepoClear(it) })
     }
 
     private fun initViews(savedInstanceState: Bundle?) {
@@ -96,8 +64,8 @@ class ProfileActivity : AppCompatActivity() {
         btn_edit.setOnClickListener {
             viewModel.onRepoEditCompleted(wr_repository.isErrorEnabled)
 
-            if (isEditMode)
-                saveProfileInfo()
+            if (isEditMode) saveProfileInfo()
+
             isEditMode = !isEditMode
             showCurrentMode(isEditMode)
         }
@@ -137,13 +105,13 @@ class ProfileActivity : AppCompatActivity() {
                 "repository"
             ).contains(it.key)
         }
+
         for ((_, v) in info) {
             v is EditText
             v.isFocusable = isEditMode
             v.isFocusableInTouchMode = isEditMode
             v.isEnabled = isEditMode
             v.background.alpha = if (isEditMode) 255 else 0
-
         }
 
         ic_eye.visibility = if (isEditMode) View.GONE else View.VISIBLE
@@ -172,5 +140,27 @@ class ProfileActivity : AppCompatActivity() {
     private fun updateAvatar(profile: Profile) {
         val initials = Utils.toInitials(profile.firstName, profile.lastName)
         iv_avatar.generateAvatar(initials, (48 * this.applicationContext.resources.displayMetrics.scaledDensity.toInt()), theme)
+    }
+
+    private fun updateRepoClear(isError: Boolean) {
+        if (isError) et_repository.text.clear()
+    }
+
+    private fun updateRepoError(isError: Boolean) {
+        wr_repository.isErrorEnabled = isError
+        wr_repository.error = if (isError) "Невалидный адрес репозитория" else ""
+    }
+
+    private fun updateTheme(mode: Int) {
+        delegate.setLocalNightMode(mode)
+    }
+
+    private fun updateUI(profile: Profile) {
+        profile.toMap().also {
+            for((k,v) in viewFields){
+                v.text = it[k].toString()
+            }
+        }
+        updateAvatar(profile)
     }
 }
