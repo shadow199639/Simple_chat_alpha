@@ -26,7 +26,7 @@ The application created in Kotlin using MVVM pattern.
 **Further plans to develop**:
 
 > 1. Users authorization using custom API (retrofit) or FireBase
-> 2. Use socket.io for real-time chatting 
+> 2. Use socket.io or firebase realtime db for real-time chatting 
 > 3. Improve interface and fix bugs
 > 4. Many many more
 > 5. ...
