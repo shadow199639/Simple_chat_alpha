@@ -12,6 +12,7 @@ The application created in Kotlin using MVVM pattern.
 * sorting group members in Chip
 * archive a chat/group (hide archive button if there is no other one)
 * unarchive a chat/group
+* user profile page with dark theme
 
 **Screenshots:**
 
