@@ -15,8 +15,7 @@ The application created in Kotlin using MVVM pattern.
 
 **Screenshots:**
 
-![Simple_chat](https://github.com/shadow199639/Simple_chat_alpha/blob/main/README.assets/Simple_chat.jpg)
-
+<img src="https://github.com/shadow199639/Simple_chat_alpha/blob/main/README.assets/Simple_chat.jpg" alt="Simple_chat" style="zoom:50%;" />
 ------
 
 **Further plans to develop**:
