@@ -7,10 +7,10 @@ The application created in Kotlin using MVVM pattern.
 
 **Main features:**
 
-* chat and group list
+* single and group chat lists
 * creating a group by float button
-* sorting group members in Chip
-* archive a chat/group (hide archive button if there is no other one)
+* sorting group members into Chip
+* archive a chat/group (hide archive item if there is no archived chat or group)
 * unarchive a chat/group
 * user profile page with dark theme
 * search chats and users with mediatorLiveData
