@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_archive.*
 import kotlinx.android.synthetic.main.activity_archive.toolbar
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.skillbranch.devintensive.R
-import ru.skillbranch.devintensive.utils.ArchiveItemTouchHelperCallback
+import ru.skillbranch.devintensive.ui.adapters.ArchiveItemTouchHelperCallback
 import ru.skillbranch.devintensive.ui.adapters.ChatAdapter
 import ru.skillbranch.devintensive.viewmodels.ArchiveViewModel
 

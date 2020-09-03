@@ -1,4 +1,6 @@
-package ru.skillbranch.devintensive.utils
+package ru.skillbranch.devintensive.models
+
+import ru.skillbranch.devintensive.utils.Utils
 
 class Profile (
     val firstName: String,

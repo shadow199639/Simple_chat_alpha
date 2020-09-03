@@ -1,4 +1,4 @@
-package ru.skillbranch.devintensive.utils
+package ru.skillbranch.devintensive.ui.adapters
 
 import android.graphics.drawable.Drawable
 import android.view.View
