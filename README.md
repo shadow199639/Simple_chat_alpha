@@ -17,9 +17,9 @@ The application created in Kotlin using MVVM pattern.
 
 **Screenshots:**
 
-| <img src="https://raw.githubusercontent.com/shadow199639/Simple_chat_alpha/main/README.assets/Messenger%20with%20swipe.png" style="zoom:50%"/> | <img src="https://raw.githubusercontent.com/shadow199639/Simple_chat_alpha/main/README.assets/Messenger%20Archive.png" style="zoom:50%"/> |
+| <img src="https://raw.githubusercontent.com/shadow199639/Simple_chat_alpha/main/README.assets/1.png" style="zoom:50%"/> | <img src="https://raw.githubusercontent.com/shadow199639/Simple_chat_alpha/main/README.assets/2.png" style="zoom:50%"/> |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="https://raw.githubusercontent.com/shadow199639/Simple_chat_alpha/main/README.assets/Messenger%20Group%20Choose.png" style="zoom:50%"/> | <img src="https://raw.githubusercontent.com/shadow199639/Simple_chat_alpha/main/README.assets/Messenger%20Group%20Search.png" style="zoom:50%"/> |
+| <img src="https://raw.githubusercontent.com/shadow199639/Simple_chat_alpha/main/README.assets/3.png" style="zoom:50%"/> | <img src="https://raw.githubusercontent.com/shadow199639/Simple_chat_alpha/main/README.assets/4.png" style="zoom:50%"/> |
 
 ------
 
