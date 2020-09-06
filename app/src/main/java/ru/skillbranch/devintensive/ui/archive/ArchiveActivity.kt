@@ -2,6 +2,7 @@ package ru.skillbranch.devintensive.ui.archive
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -29,8 +30,20 @@ class ArchiveActivity : AppCompatActivity() {
         initViewModel()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return if(item?.itemId == android.R.id.home){
+            finish()
+            overridePendingTransition(R.anim.idle, R.anim.bottom_down)
+            true
+        }
+        else
+            super.onOptionsItemSelected(item)
+    }
+
     private fun initToolbar() {
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
     }
 
     private fun initViews() {
