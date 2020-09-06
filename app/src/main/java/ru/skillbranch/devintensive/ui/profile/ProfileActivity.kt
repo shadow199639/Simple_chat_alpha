@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.Profile
@@ -139,7 +140,10 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun updateAvatar(profile: Profile) {
         val initials = Utils.toInitials(profile.firstName, profile.lastName)
-        iv_avatar.generateAvatar(initials, (48 * this.applicationContext.resources.displayMetrics.scaledDensity.toInt()), theme)
+        if (initials != null) {
+            Glide.with(this).clear(iv_profile_avatar)
+            iv_profile_avatar.setInitials(initials)
+        }
     }
 
     private fun updateRepoClear(isError: Boolean) {

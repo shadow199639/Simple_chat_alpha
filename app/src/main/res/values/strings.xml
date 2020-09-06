@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Chat Dev-intensive</string>
+    <string name="app_name">SimpleChat</string>
+    <string name="arch_name">Архив чатов</string>
+    <string name="group_name">Создание группы</string>
     <string name="profile_label_rating">Рейтинг</string>
     <string name="profile_label_respect">Уважение</string>
     <string name="profile_hint_repository">Репозиторий</string>

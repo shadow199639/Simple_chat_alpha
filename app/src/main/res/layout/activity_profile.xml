@@ -30,12 +30,12 @@
                 android:layout_height="@dimen/btn_round_size_40"
                 android:layout_marginTop="@dimen/spacing_more_huge"
                 android:layout_marginEnd="@dimen/spacing_huge_32"
-                android:layout_toStartOf="@id/iv_avatar"
+                android:layout_toStartOf="@id/iv_profile_avatar"
                 android:background="@drawable/btn_round_bg"
                 android:src="@drawable/ic_switch_day_night" />
 
-            <ru.skillbranch.devintensive.ui.custom.CircleImageView
-                android:id="@+id/iv_avatar"
+            <ru.skillbranch.avatarimageview.ui.custom.AvatarImageView
+                android:id="@+id/iv_profile_avatar"
                 android:layout_width="@dimen/avatar_round_size"
                 android:layout_height="@dimen/avatar_round_size"
                 android:layout_centerHorizontal="true"
@@ -47,7 +47,7 @@
                 android:layout_height="@dimen/btn_round_size_40"
                 android:layout_marginStart="@dimen/spacing_huge_32"
                 android:layout_marginTop="@dimen/spacing_more_huge"
-                android:layout_toEndOf="@id/iv_avatar"
+                android:layout_toEndOf="@id/iv_profile_avatar"
                 android:background="@drawable/btn_round_bg"
                 android:src="@drawable/ic_edit_black_24dp" />
 
@@ -56,7 +56,7 @@
                 style="@style/Profile.Header.Nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/iv_avatar"
+                android:layout_below="@id/iv_profile_avatar"
                 android:layout_centerHorizontal="true"
                 tools:text="John Doe" />
 

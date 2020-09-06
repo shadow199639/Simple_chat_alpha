@@ -12,8 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.archive.ArchiveActivity"></activity>
-        <activity android:name=".ui.group.GroupActivity" />
+        <activity android:name=".ui.archive.ArchiveActivity"
+            android:label="@string/arch_name"/>
+        <activity android:name=".ui.group.GroupActivity"
+            android:label="@string/group_name"/>
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
